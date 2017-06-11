@@ -1,0 +1,18 @@
+version: '0.1.2-alpha-{build}'
+
+install:
+  # Get the latest stable version of Node.js
+  - ps: Install-Product node
+  # install modules
+  - npm install
+  
+platform: Any CPU
+configuration: Release
+os: Visual Studio 2017
+
+before_build:
+  - dotnet restore  
+  
+build:
+  parallel: true            
+  project: DevelopersSurvey.sln
