@@ -7,9 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DevelopersSurvey.Web.Data
+namespace DevelopersSurvey.DA
 {
-    using DevelopersSurvey.Web.Identity.Models;
+    using DevelopersSurvey.DA.Enums;
+    using DevelopersSurvey.DA.Models;
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,16 @@ namespace DevelopersSurvey.Web.Data
         }
 
         /// <summary>
+        /// Gets or sets the respondents dbset.
+        /// </summary>
+        public DbSet<Respondent> Respondents { get; set; }
+
+        /// <summary>
+        /// Gets or sets the experiances dbset.
+        /// </summary>
+        public DbSet<Experiance> Experiances { get; set; }
+
+        /// <summary>
         /// The on model creating.
         /// </summary>
         /// <param name="builder">
@@ -43,6 +54,8 @@ namespace DevelopersSurvey.Web.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+            builder.Entity<Respondent>().HasKey(m => m.Id);
+            builder.Entity<Experiance>().HasKey(m => m.Id);
         }
     }
 }

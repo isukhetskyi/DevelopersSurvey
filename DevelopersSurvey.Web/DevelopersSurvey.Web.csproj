@@ -11,6 +11,10 @@
   <PropertyGroup>
     <UserSecretsId>aspnet-DevelopersSurvey.Web-25db7477-cf90-43d9-8115-e188e2ac879f</UserSecretsId>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp1.1\DevelopersSurvey.Web.xml</DocumentationFile>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
@@ -36,6 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DevelopersSurvey.Contracts\DevelopersSurvey.Contracts.csproj" />
+    <ProjectReference Include="..\DevelopersSurvey.DA\DevelopersSurvey.DA.csproj" />
+    <ProjectReference Include="..\DevelopersSurvey.Services\DevelopersSurvey.Services.csproj" />
   </ItemGroup>
 
 </Project>

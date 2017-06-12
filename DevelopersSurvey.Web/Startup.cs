@@ -9,7 +9,11 @@
 
 namespace DevelopersSurvey.Web
 {
-    using DevelopersSurvey.Web.Data;
+    using DevelopersSurvey.Contracts.Repositories;
+    using DevelopersSurvey.Contracts.Services;
+    using DevelopersSurvey.DA;
+    using DevelopersSurvey.DA.Repositories;
+    using DevelopersSurvey.Services.Services;
     using DevelopersSurvey.Web.Identity.Models;
     using DevelopersSurvey.Web.Identity.Services;
 
@@ -78,6 +82,10 @@ namespace DevelopersSurvey.Web
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            // Add custom services
+            services.AddScoped<IRespondentsRepository, RespondentsRepository>();
+            services.AddScoped<IRespondentsService, RespondentsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
