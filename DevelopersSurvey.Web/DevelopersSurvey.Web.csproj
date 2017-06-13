@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UI\Homepage\Components\" />
-    <Folder Include="UI\Shared\" />
     <Folder Include="UI\Statistic\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

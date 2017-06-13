@@ -14,6 +14,7 @@ var Pahts = {
 const config = {
     entry: {
         homepage: './UI/Homepage/index.tsx',
+        survey: './UI/Survey/index.tsx',
         libs: [
             'bootstrap',
             'bootstrap/dist/css/bootstrap.css',
