@@ -6,10 +6,34 @@ interface ISurveyFormProps {
 }
 
 interface ISurveyFormState {
+    // personal info
+    firstName: string;
+    lastName: string;
+    age: number;
+    address: string;
+    isEmployed: boolean;
+    currentPosition: string;
+    phone: string; 
+    emailAddress: string;
+    skype: string;
 
+    // education
+    placeOfStudying: string;
+    specialty: string;
+
+    // work experiance
+    programmingLangages: Array<string>;
+    frameworks: Array<string>;
+
+    // other info 
+    otherInfo: string;
 }
 
 export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormState> {
+    handleFirstNameCange(event: any): void {
+        //this.setState({ firstName: event.target.value});
+    };
+
     render() {
         return <div className="container">
             <Form horizontal>
@@ -123,47 +147,47 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Programming Languages
                     </Col>
                     <Col sm={10}>
-                        <Checkbox inline>
+                        <Checkbox value="C#" inline>
                             C#
                         </Checkbox>
                         {' '}
-                        <Checkbox inline>
+                        <Checkbox value="JavaScript" inline>
                             JavaScript
                         </Checkbox>
                         {' '}
-                        <Checkbox inline>
+                        <Checkbox value="SQL" inline>
                             SQL
                         </Checkbox>
                         {' '}
-                        <Checkbox inline>
+                        <Checkbox value="C" inline>
                             C
                         </Checkbox>
                         {' '}
-                        <Checkbox inline>
+                        <Checkbox value="C++" inline>
                             C++
                         </Checkbox>
                         {' '}
-                        <Checkbox inline>
+                        <Checkbox value="PHP" inline>
                             PHP
                         </Checkbox>
                         {' '}
-                        <Checkbox inline>
+                        <Checkbox value="Java" inline>
                             Java
                         </Checkbox>
                         {' '}
-                        <Checkbox inline>
+                        <Checkbox value="Ruby" inline>
                             Ruby
                         </Checkbox>
                         {' '}
-                        <Checkbox inline>
+                        <Checkbox value="Python" inline>
                             Python
                         </Checkbox>
                         {' '}
-                        <Checkbox inline>
+                        <Checkbox value="ObjectiveC" inline>
                             Objective C
                         </Checkbox>
                         {' '}
-                        <Checkbox inline>
+                        <Checkbox value="Swift" inline>
                             Swift
                         </Checkbox>
                     </Col>
@@ -173,35 +197,35 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                     Frameworks
                 </Col>
                 <Col sm={10}>
-                    <Checkbox inline>
+                    <Checkbox value="ASP.Net" inline>
                         ASP.Net 
                     </Checkbox>
                     {' '}
-                    <Checkbox inline>
+                    <Checkbox value="EntityFramework" inline>
                         Entity Framework
                     </Checkbox>
                     {' '}                    
-                    <Checkbox inline>
+                    <Checkbox value="NUnit" inline>
                         NUnit
                     </Checkbox>
                     {' '}
-                    <Checkbox inline>
+                    <Checkbox value="Angular" inline>
                         Angular
                     </Checkbox>
                     {' '}
-                    <Checkbox inline>
+                    <Checkbox value="AngularJS" inline>
                         AngularJS
                     </Checkbox>
                     {' '}
-                    <Checkbox inline>
+                    <Checkbox value="Xamarin" inline>
                         Xamarin
                     </Checkbox>
                     {' '}
-                    <Checkbox inline>
+                    <Checkbox value="Xamarin.Forms" inline>
                         Xamarin.Forms
                     </Checkbox>
                     {' '}
-                    <Checkbox inline>
+                    <Checkbox value="React" inline>
                         React
                     </Checkbox>
                 </Col>
