@@ -5,35 +5,120 @@ interface ISurveyFormProps {
 
 }
 
-interface ISurveyFormState {
+class Respondent {
     // personal info
-    firstName: string;
-    lastName: string;
-    age: number;
-    address: string;
-    isEmployed: boolean;
-    currentPosition: string;
-    phone: string; 
-    emailAddress: string;
-    skype: string;
+    firstName?: string;
+    lastName?: string;
+    age?: number;
+    address?: string;
+    isEmployed?: boolean;
+    currentPosition?: string;
+    phone?: string;
+    emailAddress?: string;
+    skype?: string;
 
     // education
-    placeOfStudying: string;
-    specialty: string;
+    placeOfStudying?: string;
+    specialty?: string;
 
     // work experiance
-    programmingLangages: Array<string>;
-    frameworks: Array<string>;
+    programmingLangages?: Array<string>;
+    frameworks?: Array<string>;
 
     // other info 
-    otherInfo: string;
+    otherInfo?: string;
+}
+
+interface ISurveyFormState {
+        // personal info
+        firstName: string;
+        lastName: string;
+        age: number;
+        address: string;
+        isEmployed: boolean;
+        currentPosition: string;
+        phone: string;
+        emailAddress: string;
+        skype: string;
+
+        // education
+        placeOfStudying: string;
+        specialty: string;
+
+        // work experiance
+        programmingLangages: Array<string>;
+        frameworks: Array<string>;
+
+        // other info 
+        otherInfo: string;    
 }
 
 export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormState> {
     handleFirstNameCange(event: any): void {
-        //this.setState({ firstName: event.target.value});
+        this.setState({ firstName: event.target.value });
+        console.log(event.target.value);
     };
 
+    handleLastNameCange(event: any): void {
+        this.setState({ lastName: event.target.value });
+        console.log(event.target.value);
+    };
+
+    handleAgeCange(event: any): void {
+        this.setState({ age: event.target.value });
+        console.log(event.target.value);
+    };
+
+    handleAddressCange(event: any): void {
+        this.setState({ address: event.target.value });
+        console.log(event.target.value);
+    };
+
+    handleCurrentPositionCange(event: any): void {
+        this.setState({ currentPosition: event.target.value });
+        console.log(event.target.value);
+    };
+
+    handlePhoneCange(event: any): void {
+        this.setState({ phone: event.target.value });
+        console.log(event.target.value);
+    };
+
+    handleEmailCange(event: any): void {
+        this.setState({ emailAddress: event.target.value });
+        console.log(event.target.value);
+    };
+
+    handleSkypeCange(event: any): void {
+        this.setState({ skype: event.target.value });
+        console.log(event.target.value);
+    };
+
+    handlePlaceOfStudyingCange(event: any): void {
+        this.setState({ placeOfStudying: event.target.value });
+        console.log(event.target.value);
+    };
+
+    handleSpecialtyCange(event: any): void {
+        this.setState({ specialty: event.target.value });
+        console.log(event.target.value);
+    };
+
+    handleOtherInfoCange(event: any): void {
+        this.setState({ otherInfo: event.target.value });
+        console.log(event.target.value);
+    };
+
+    // TODO add checkboxes handling IS
+    handleSubmit(event: any): void {
+        //TODO add form data here IS
+        var data = new FormData();
+        data.append('respondent', "");
+        console.log(this.state.firstName)
+        var xhr = new XMLHttpRequest();
+        xhr.open('post', "http://localhost:56449/home/SubmitSurvey");
+        xhr.send(data);
+    };
     render() {
         return <div className="container">
             <Form horizontal>
@@ -47,7 +132,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         First Name
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" placeholder="John" />
+                        <FormControl type="text" onChange={this.handleFirstNameCange.bind(this)} placeholder="John" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormLastName">
@@ -55,7 +140,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Last Name
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" placeholder="Snow" />
+                        <FormControl type="text" onChange={this.handleLastNameCange.bind(this)} placeholder="Snow" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormAge">
@@ -63,7 +148,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Age
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" placeholder="18" />
+                        <FormControl type="text" onChange={this.handleAgeCange.bind(this)} placeholder="18" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormAddress">
@@ -71,7 +156,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Address
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" placeholder="Ivano-Frankivsk city" />
+                        <FormControl type="text" onChange={this.handleAddressCange.bind(this)} placeholder="Ivano-Frankivsk city" />
                     </Col>
                 </FormGroup>
                 <FormGroup>
@@ -93,7 +178,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Current Position
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" placeholder="Software Engeneer" />
+                        <FormControl type="text" onChange={this.handleCurrentPositionCange.bind(this)} placeholder="Software Engeneer" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormPhone">
@@ -101,7 +186,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Phone
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" placeholder="+380 66 666 6666" />
+                        <FormControl type="text" onChange={this.handlePhoneCange.bind(this)} placeholder="+380 66 666 6666" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormMail">
@@ -109,7 +194,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Email Address
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" placeholder="example@test.com" />
+                        <FormControl type="text" onChange={this.handleEmailCange.bind(this)} placeholder="example@test.com" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormSkype">
@@ -117,7 +202,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Skype
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" placeholder="johnystark" />
+                        <FormControl type="text" onChange={this.handleSkypeCange.bind(this)} placeholder="johnystark" />
                     </Col>
                 </FormGroup>
                 <hr/>
@@ -129,7 +214,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Place Of Studying
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" placeholder="IFNTUOG" />
+                        <FormControl type="text" onChange={this.handlePlaceOfStudyingCange.bind(this)} placeholder="IFNTUOG" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormSpecialty">
@@ -137,7 +222,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Specialty
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" placeholder="Army Runner" />
+                        <FormControl type="text" onChange={this.handleSpecialtyCange.bind(this)} placeholder="Army Runner" />
                     </Col>
                 </FormGroup>
                 <hr/>
@@ -237,13 +322,13 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                     Tell me more
                 </Col>
                 <Col sm={10}>
-                    <FormControl componentClass="textarea" placeholder="Some borring text" />
+                    <FormControl componentClass="textarea" onChange={this.handleOtherInfoCange.bind(this)} placeholder="Some borring text" />
                 </Col>
             </FormGroup>
             <hr/>
             <FormGroup>
-                <Col smOffset={2} sm={10}>
-                    <Button type="submit">
+                    <Col smOffset={2} sm={10}>
+                        <Button type="submit" onClick={this.handleSubmit.bind(this)}>
                         Submit
                     </Button>
                 </Col>
