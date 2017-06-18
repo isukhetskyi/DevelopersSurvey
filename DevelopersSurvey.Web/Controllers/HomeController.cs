@@ -5,16 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DevelopersSurvey.Contracts.DataContracts;
 using DevelopersSurvey.Contracts.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace DevelopersSurvey.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private IRespondentsService respondentService;
+        private IRespondentsService _respondentsService;
 
         public HomeController(IRespondentsService respondentsService)
         {
-            this.respondentService = respondentService;
+            this._respondentsService = respondentsService;
         }
 
         public IActionResult Index()
@@ -42,9 +44,10 @@ namespace DevelopersSurvey.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult SubmitSurvey(RespondentDto respondent)
+        public IActionResult SubmitSurvey(string respondent)
         {
-            this.respondentService.Add(respondent);
+            var newRespondent = JsonConvert.DeserializeObject<RespondentDto>(respondent);
+            this._respondentsService.Add(newRespondent);
             return View();
         }
     }

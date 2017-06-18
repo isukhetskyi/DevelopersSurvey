@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using AutoMapper;
+
 namespace DevelopersSurvey.DA.Repositories
 {
     using System;
@@ -15,7 +17,6 @@ namespace DevelopersSurvey.DA.Repositories
 
     using DevelopersSurvey.Contracts.DataContracts;
     using DevelopersSurvey.Contracts.Repositories;
-    using DevelopersSurvey.DA.Automapper;
     using DevelopersSurvey.DA.Models;
 
     /// <summary>
@@ -26,7 +27,9 @@ namespace DevelopersSurvey.DA.Repositories
         /// <summary>
         /// The context.
         /// </summary>
-        private readonly ApplicationDbContext context;
+        private readonly ApplicationDbContext _context;
+
+        private readonly IMapper _mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RespondentsRepository"/> class.
@@ -34,9 +37,13 @@ namespace DevelopersSurvey.DA.Repositories
         /// <param name="context">
         /// The application db context.
         /// </param>
-        public RespondentsRepository(ApplicationDbContext context)
+        /// <param name="mapper">
+        /// Automapper
+        /// </param>
+        public RespondentsRepository(ApplicationDbContext context, IMapper mapper)
         {
-            this.context = context;
+            this._context = context;
+            this._mapper = mapper;
         }
 
         /// <summary>
@@ -50,8 +57,8 @@ namespace DevelopersSurvey.DA.Repositories
         /// </returns>
         public RespondentDto Add(RespondentDto newEntry)
         {
-            var newRepondent = AutoMapperConfiguration.GlobalMapper.Map<RespondentDto, Respondent>(newEntry);
-            this.context.Respondents.Add(newRepondent);
+            var newRepondent = _mapper.Map<Respondent>(newEntry);
+            this._context.Respondents.Add(newRepondent);
             newEntry.Id = newRepondent.Id;
             return newEntry;
         }
@@ -67,8 +74,8 @@ namespace DevelopersSurvey.DA.Repositories
         /// </returns>
         public RespondentDto GetById(int id)
         {
-            return AutoMapperConfiguration.GlobalMapper.Map<Respondent, RespondentDto>(
-                this.context.Respondents.FirstOrDefault(r => r.Id == id));
+            return _mapper.Map<RespondentDto>(
+                this._context.Respondents.FirstOrDefault(r => r.Id == id));
         }
 
         /// <summary>
@@ -79,8 +86,8 @@ namespace DevelopersSurvey.DA.Repositories
         /// </returns>
         public IEnumerable<RespondentDto> GetAll()
         {
-            return AutoMapperConfiguration.GlobalMapper.Map<List<Respondent>, List<RespondentDto>>(
-                this.context.Respondents.ToList());
+            return this._mapper.Map<List<RespondentDto>>(
+                this._context.Respondents.ToList());
         }
     }
 }

@@ -6,27 +6,30 @@ interface ISurveyFormProps {
 }
 
 class Respondent {
+
     // personal info
-    firstName?: string;
-    lastName?: string;
-    age?: number;
-    address?: string;
-    isEmployed?: boolean;
-    currentPosition?: string;
-    phone?: string;
-    emailAddress?: string;
-    skype?: string;
+    Id?: number;
+    FirstName?: string;
+    LastName?: string;
+    Age?: number;
+    Address?: string;
+    IsCurrentlyEmployed?: boolean;
+    CurrentPosition?: string;
+    PhoneNumber?: string;
+    Mail?: string;
+    Skype?: string;
 
     // education
-    placeOfStudying?: string;
-    specialty?: string;
+    PlaceOfStudying?: string;
+    SpecialCources?: string;
 
     // work experiance
-    programmingLangages?: Array<string>;
-    frameworks?: Array<string>;
+    ProgrammingLanguages?: string;
+    Databases?: string;
+    Frameworks?: string;
 
     // other info 
-    otherInfo?: string;
+    OtherInfo?: string;
 }
 
 interface ISurveyFormState {
@@ -111,12 +114,33 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
 
     // TODO add checkboxes handling IS
     handleSubmit(event: any): void {
-        //TODO add form data here IS
+
+        let newRespondent: Respondent = new Respondent();
+        newRespondent.FirstName = this.state.firstName;
+        newRespondent.LastName = this.state.lastName;
+        newRespondent.Age = this.state.age;
+        newRespondent.Address = this.state.address;
+        newRespondent.IsCurrentlyEmployed = false;
+        newRespondent.CurrentPosition = this.state.currentPosition;
+        newRespondent.PhoneNumber = this.state.phone;
+        newRespondent.Mail = this.state.emailAddress;
+        newRespondent.Skype = this.state.skype;
+        newRespondent.PlaceOfStudying = this.state.placeOfStudying;
+        newRespondent.SpecialCources = this.state.specialty;
+        newRespondent.ProgrammingLanguages = "C#";
+        newRespondent.Frameworks = "EF";
+        newRespondent.Databases = "T-SQL";
+        newRespondent.OtherInfo = this.state.otherInfo;
+        let jsonRespondent = JSON.stringify(newRespondent);
+        console.log(jsonRespondent);
+    
         var data = new FormData();
-        data.append('respondent', "");
-        console.log(this.state.firstName)
+        data.append("respondent", jsonRespondent);
         var xhr = new XMLHttpRequest();
-        xhr.open('post', "http://localhost:56449/home/SubmitSurvey");
+        xhr.open("POST", "home/SubmitSurvey", true);
+        xhr.onload = function() {
+            debugger;
+        };
         xhr.send(data);
     };
     render() {

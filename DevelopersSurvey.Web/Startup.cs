@@ -7,6 +7,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using DevelopersSurvey.Contracts.DataContracts;
+using DevelopersSurvey.DA.Models;
+
 namespace DevelopersSurvey.Web
 {
     using DevelopersSurvey.Contracts.Repositories;
@@ -78,7 +81,7 @@ namespace DevelopersSurvey.Web
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-
+            
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -86,6 +89,14 @@ namespace DevelopersSurvey.Web
             // Add custom services
             services.AddScoped<IRespondentsRepository, RespondentsRepository>();
             services.AddScoped<IRespondentsService, RespondentsService>();
+
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<RespondentDto, Respondent>();
+            });
+
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
