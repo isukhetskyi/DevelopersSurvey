@@ -59,6 +59,7 @@ namespace DevelopersSurvey.DA.Repositories
         {
             var newRepondent = _mapper.Map<Respondent>(newEntry);
             this._context.Respondents.Add(newRepondent);
+            this._context.SaveChanges();
             newEntry.Id = newRepondent.Id;
             return newEntry;
         }
