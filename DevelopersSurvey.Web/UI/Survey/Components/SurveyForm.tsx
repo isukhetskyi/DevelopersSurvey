@@ -34,85 +34,149 @@ class Respondent {
 
 interface ISurveyFormState {
         // personal info
-        firstName: string;
-        lastName: string;
-        age: number;
-        address: string;
-        isEmployed: boolean;
-        currentPosition: string;
-        phone: string;
-        emailAddress: string;
-        skype: string;
+        firstName?: string;
+        lastName?: string;
+        age?: number;
+        address?: string;
+        isEmployed?: boolean;
+        currentPosition?: string;
+        phone?: string;
+        emailAddress?: string;
+        skype?: string;
 
         // education
-        placeOfStudying: string;
-        specialty: string;
+        placeOfStudying?: string;
+        specialty?: string;
 
         // work experiance
-        programmingLangages: Array<string>;
-        frameworks: Array<string>;
+        programmingLangages?: Array<string>;
+        frameworks?: Array<string>;
+        databases?: Array<string>;
 
         // other info 
-        otherInfo: string;    
+        otherInfo?: string;    
 }
 
 export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormState> {
-    handleFirstNameCange(event: any): void {
+
+    constructor(props: ISurveyFormProps) {
+        super(props);
+        this.state = {
+            firstName: "",
+            lastName: "",
+            age: 0,
+            address: "",
+            isEmployed: false,
+            currentPosition: "",
+            phone: "",
+            emailAddress: "",
+            skype: "",
+            placeOfStudying: "",
+            specialty: "",
+            programmingLangages: [],
+            frameworks: [],
+            databases: [],
+            otherInfo: ""
+        }
+    }
+
+    handleFirstNameChange(event: any): void {
         this.setState({ firstName: event.target.value });
-        console.log(event.target.value);
     };
 
-    handleLastNameCange(event: any): void {
+    handleLastNameChange(event: any): void {
         this.setState({ lastName: event.target.value });
-        console.log(event.target.value);
     };
 
-    handleAgeCange(event: any): void {
+    handleAgeChange(event: any): void {
         this.setState({ age: event.target.value });
-        console.log(event.target.value);
     };
 
-    handleAddressCange(event: any): void {
+    handleAddressChange(event: any): void {
         this.setState({ address: event.target.value });
-        console.log(event.target.value);
     };
 
-    handleCurrentPositionCange(event: any): void {
+    handleIsEmployedTrue(event: any): void {
+        this.setState({ isEmployed: true });
+    }
+
+    handleIsEmployedFalse(event: any): void {
+        this.setState({ isEmployed: false });
+    }
+
+    handleCurrentPositionChange(event: any): void {
         this.setState({ currentPosition: event.target.value });
-        console.log(event.target.value);
     };
 
-    handlePhoneCange(event: any): void {
+    handlePhoneChange(event: any): void {
         this.setState({ phone: event.target.value });
-        console.log(event.target.value);
     };
 
-    handleEmailCange(event: any): void {
+    handleEmailChange(event: any): void {
         this.setState({ emailAddress: event.target.value });
-        console.log(event.target.value);
     };
 
-    handleSkypeCange(event: any): void {
+    handleSkypeChange(event: any): void {
         this.setState({ skype: event.target.value });
-        console.log(event.target.value);
     };
 
-    handlePlaceOfStudyingCange(event: any): void {
+    handlePlaceOfStudyingChange(event: any): void {
         this.setState({ placeOfStudying: event.target.value });
-        console.log(event.target.value);
     };
 
-    handleSpecialtyCange(event: any): void {
+    handleSpecialtyChange(event: any): void {
         this.setState({ specialty: event.target.value });
-        console.log(event.target.value);
-    };
+    }
 
-    handleOtherInfoCange(event: any): void {
+    handleOtherInfoChange(event: any): void {
         this.setState({ otherInfo: event.target.value });
-        console.log(event.target.value);
     };
 
-    // TODO add checkboxes handling IS
+    handleProgrammingLanguagesChange(event: any): void {
+        if (event.target.checked) {
+            let newArray = this.state.programmingLangages;
+            newArray.push(event.target.value);
+            this.setState({ programmingLangages: newArray });
+        } else {
+            let newArray = this.state.programmingLangages;
+            let index = this.state.programmingLangages.indexOf(event.target.value, 0);
+            if (index > -1) {
+                newArray.splice(index, 1);
+            }
+            this.setState({ programmingLangages: newArray});
+        }
+    }
+
+    handleFrameworksChange(event: any): void {
+        if (event.target.checked) {
+            let newArray = this.state.frameworks;
+            newArray.push(event.target.value);
+            this.setState({ frameworks: newArray });
+        } else {
+            let newArray = this.state.frameworks;
+            let index = this.state.frameworks.indexOf(event.target.value, 0);
+            if (index > -1) {
+                newArray.splice(index, 1);
+            }
+            this.setState({ frameworks: newArray });
+        }
+    }
+
+    handleDatabasesChange(event: any): void {
+        if (event.target.checked) {
+            let newArray = this.state.databases;
+            newArray.push(event.target.value);
+            this.setState({ databases: newArray });
+        } else {
+            let newArray = this.state.databases;
+            let index = this.state.databases.indexOf(event.target.value, 0);
+            if (index > -1) {
+                newArray.splice(index, 1);
+            }
+            this.setState({ databases: newArray });
+        }
+    }
+
     handleSubmit(event: any): void {
 
         let newRespondent: Respondent = new Respondent();
@@ -120,16 +184,16 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
         newRespondent.LastName = this.state.lastName;
         newRespondent.Age = this.state.age;
         newRespondent.Address = this.state.address;
-        newRespondent.IsCurrentlyEmployed = false;
+        newRespondent.IsCurrentlyEmployed = this.state.isEmployed;
         newRespondent.CurrentPosition = this.state.currentPosition;
         newRespondent.PhoneNumber = this.state.phone;
         newRespondent.Mail = this.state.emailAddress;
         newRespondent.Skype = this.state.skype;
         newRespondent.PlaceOfStudying = this.state.placeOfStudying;
         newRespondent.SpecialCources = this.state.specialty;
-        newRespondent.ProgrammingLanguages = "C#";
-        newRespondent.Frameworks = "EF";
-        newRespondent.Databases = "T-SQL";
+        newRespondent.ProgrammingLanguages = this.state.programmingLangages.join(",");
+        newRespondent.Frameworks = this.state.frameworks.join(",");
+        newRespondent.Databases = this.state.databases.join(",");
         newRespondent.OtherInfo = this.state.otherInfo;
         let jsonRespondent = JSON.stringify(newRespondent);
         console.log(jsonRespondent);
@@ -156,7 +220,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         First Name
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" onChange={this.handleFirstNameCange.bind(this)} placeholder="John" />
+                        <FormControl type="text" onChange={this.handleFirstNameChange.bind(this)} placeholder="John" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormLastName">
@@ -164,7 +228,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Last Name
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" onChange={this.handleLastNameCange.bind(this)} placeholder="Snow" />
+                        <FormControl type="text" onChange={this.handleLastNameChange.bind(this)} placeholder="Snow" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormAge">
@@ -172,7 +236,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Age
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" onChange={this.handleAgeCange.bind(this)} placeholder="18" />
+                        <FormControl type="text" onChange={this.handleAgeChange.bind(this)} placeholder="18" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormAddress">
@@ -180,7 +244,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Address
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" onChange={this.handleAddressCange.bind(this)} placeholder="Ivano-Frankivsk city" />
+                        <FormControl type="text" onChange={this.handleAddressChange.bind(this)} placeholder="Ivano-Frankivsk city" />
                     </Col>
                 </FormGroup>
                 <FormGroup>
@@ -188,11 +252,11 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Are You Currently Employed?
                     </Col>
                     <Col sm={10}>
-                        <Radio name="radioGroup" inline>
+                        <Radio name="radioGroup" inline onClick={this.handleIsEmployedTrue.bind(this)}>
                             Fuck yeah!
                         </Radio>
                         {' '}
-                        <Radio name="radioGroup" inline>
+                        <Radio name="radioGroup" inline onClick={this.handleIsEmployedFalse.bind(this)}>
                             Nope, I'm homeless :(
                         </Radio>
                     </Col>
@@ -202,7 +266,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Current Position
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" onChange={this.handleCurrentPositionCange.bind(this)} placeholder="Software Engeneer" />
+                        <FormControl type="text" onChange={this.handleCurrentPositionChange.bind(this)} placeholder="Software Engeneer" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormPhone">
@@ -210,7 +274,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Phone
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" onChange={this.handlePhoneCange.bind(this)} placeholder="+380 66 666 6666" />
+                        <FormControl type="text" onChange={this.handlePhoneChange.bind(this)} placeholder="+380 66 666 6666" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormMail">
@@ -218,7 +282,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Email Address
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" onChange={this.handleEmailCange.bind(this)} placeholder="example@test.com" />
+                        <FormControl type="text" onChange={this.handleEmailChange.bind(this)} placeholder="example@test.com" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormSkype">
@@ -226,7 +290,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Skype
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" onChange={this.handleSkypeCange.bind(this)} placeholder="johnystark" />
+                        <FormControl type="text" onChange={this.handleSkypeChange.bind(this)} placeholder="johnystark" />
                     </Col>
                 </FormGroup>
                 <hr/>
@@ -238,7 +302,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Place Of Studying
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" onChange={this.handlePlaceOfStudyingCange.bind(this)} placeholder="IFNTUOG" />
+                        <FormControl type="text" onChange={this.handlePlaceOfStudyingChange.bind(this)} placeholder="IFNTUOG" />
                     </Col>
                 </FormGroup>
                 <FormGroup controlId="surveyFormSpecialty">
@@ -246,7 +310,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Specialty
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" onChange={this.handleSpecialtyCange.bind(this)} placeholder="Army Runner" />
+                        <FormControl type="text" onChange={this.handleSpecialtyChange.bind(this)} placeholder="Army Runner" />
                     </Col>
                 </FormGroup>
                 <hr/>
@@ -256,47 +320,47 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                         Programming Languages
                     </Col>
                     <Col sm={10}>
-                        <Checkbox value="C#" inline>
+                        <Checkbox value="C#" inline onChange={this.handleProgrammingLanguagesChange.bind(this)}>
                             C#
                         </Checkbox>
                         {' '}
-                        <Checkbox value="JavaScript" inline>
+                        <Checkbox value="JavaScript" inline onChange={this.handleProgrammingLanguagesChange.bind(this)}>
                             JavaScript
                         </Checkbox>
                         {' '}
-                        <Checkbox value="SQL" inline>
+                        <Checkbox value="SQL" inline onChange={this.handleProgrammingLanguagesChange.bind(this)}>
                             SQL
                         </Checkbox>
                         {' '}
-                        <Checkbox value="C" inline>
+                        <Checkbox value="C" inline onChange={this.handleProgrammingLanguagesChange.bind(this)}>
                             C
                         </Checkbox>
                         {' '}
-                        <Checkbox value="C++" inline>
+                        <Checkbox value="C++" inline onChange={this.handleProgrammingLanguagesChange.bind(this)}>
                             C++
                         </Checkbox>
                         {' '}
-                        <Checkbox value="PHP" inline>
+                        <Checkbox value="PHP" inline onChange={this.handleProgrammingLanguagesChange.bind(this)}>
                             PHP
                         </Checkbox>
                         {' '}
-                        <Checkbox value="Java" inline>
+                        <Checkbox value="Java" inline onChange={this.handleProgrammingLanguagesChange.bind(this)}>
                             Java
                         </Checkbox>
                         {' '}
-                        <Checkbox value="Ruby" inline>
+                        <Checkbox value="Ruby" inline onChange={this.handleProgrammingLanguagesChange.bind(this)}>
                             Ruby
                         </Checkbox>
                         {' '}
-                        <Checkbox value="Python" inline>
+                        <Checkbox value="Python" inline onChange={this.handleProgrammingLanguagesChange.bind(this)}>
                             Python
                         </Checkbox>
                         {' '}
-                        <Checkbox value="ObjectiveC" inline>
+                        <Checkbox value="ObjectiveC" inline onChange={this.handleProgrammingLanguagesChange.bind(this)}>
                             Objective C
                         </Checkbox>
                         {' '}
-                        <Checkbox value="Swift" inline>
+                        <Checkbox value="Swift" inline onChange={this.handleProgrammingLanguagesChange.bind(this)}>
                             Swift
                         </Checkbox>
                     </Col>
@@ -306,35 +370,77 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                     Frameworks
                 </Col>
                 <Col sm={10}>
-                    <Checkbox value="ASP.Net" inline>
+                        <Checkbox value="ASP.Net" inline onChange={this.handleFrameworksChange.bind(this)}>
                         ASP.Net 
                     </Checkbox>
                     {' '}
-                    <Checkbox value="EntityFramework" inline>
+                    <Checkbox value="EntityFramework" inline onChange={this.handleFrameworksChange.bind(this)}>
                         Entity Framework
                     </Checkbox>
                     {' '}                    
-                    <Checkbox value="NUnit" inline>
+                    <Checkbox value="NUnit" inline onChange={this.handleFrameworksChange.bind(this)}>
                         NUnit
                     </Checkbox>
                     {' '}
-                    <Checkbox value="Angular" inline>
+                    <Checkbox value="Angular" inline onChange={this.handleFrameworksChange.bind(this)}>
                         Angular
                     </Checkbox>
                     {' '}
-                    <Checkbox value="AngularJS" inline>
+                    <Checkbox value="AngularJS" inline onChange={this.handleFrameworksChange.bind(this)}>
                         AngularJS
                     </Checkbox>
                     {' '}
-                    <Checkbox value="Xamarin" inline>
+                    <Checkbox value="Xamarin" inline onChange={this.handleFrameworksChange.bind(this)}>
                         Xamarin
                     </Checkbox>
                     {' '}
-                    <Checkbox value="Xamarin.Forms" inline>
+                    <Checkbox value="Xamarin.Forms" inline onChange={this.handleFrameworksChange.bind(this)}>
                         Xamarin.Forms
                     </Checkbox>
                     {' '}
-                    <Checkbox value="React" inline>
+                    <Checkbox value="React" inline onChange={this.handleFrameworksChange.bind(this)}>
+                        React
+                    </Checkbox>
+                </Col>
+            </FormGroup>
+            <FormGroup>
+                <Col componentClass={ControlLabel} sm={2}>
+                    Databases
+                </Col>
+                <Col sm={10}>
+                    <Checkbox value="MSSQL" inline onChange={this.handleDatabasesChange.bind(this)}>
+                        MS SQL
+                    </Checkbox>
+                    {' '}
+                    <Checkbox value="SQLite" inline onChange={this.handleDatabasesChange.bind(this)}>
+                        SQLite
+                    </Checkbox>
+                    {' '}
+                    <Checkbox value="PostgreSQL" inline onChange={this.handleDatabasesChange.bind(this)}>
+                        PostgreSQL
+                    </Checkbox>
+                    {' '}
+                    <Checkbox value="MySQL" inline onChange={this.handleDatabasesChange.bind(this)}>
+                        MySQL
+                    </Checkbox>
+                    {' '}
+                    <Checkbox value="MongoDB" inline onChange={this.handleDatabasesChange.bind(this)}>
+                        MongoDB
+                    </Checkbox>
+                    {' '}
+                    <Checkbox value="Redis" inline onChange={this.handleDatabasesChange.bind(this)}>
+                        Redis
+                    </Checkbox>
+                    {' '}
+                    <Checkbox value="Xamarin" inline onChange={this.handleDatabasesChange.bind(this)}>
+                        Xamarin
+                    </Checkbox>
+                    {' '}
+                    <Checkbox value="Xamarin.Forms" inline onChange={this.handleDatabasesChange.bind(this)}>
+                        Xamarin.Forms
+                    </Checkbox>
+                    {' '}
+                    <Checkbox value="React" inline onChange={this.handleDatabasesChange.bind(this)}>
                         React
                     </Checkbox>
                 </Col>
@@ -346,7 +452,7 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                     Tell me more
                 </Col>
                 <Col sm={10}>
-                    <FormControl componentClass="textarea" onChange={this.handleOtherInfoCange.bind(this)} placeholder="Some borring text" />
+                    <FormControl componentClass="textarea" onChange={this.handleOtherInfoChange.bind(this)} placeholder="Some borring text" />
                 </Col>
             </FormGroup>
             <hr/>
