@@ -196,11 +196,10 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
         newRespondent.Databases = this.state.databases.join(",");
         newRespondent.OtherInfo = this.state.otherInfo;
         let jsonRespondent = JSON.stringify(newRespondent);
-        console.log(jsonRespondent);
     
-        var data = new FormData();
+        let data = new FormData();
         data.append("respondent", jsonRespondent);
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.open("POST", "home/SubmitSurvey", true);
         xhr.onload = function() {
             debugger;
