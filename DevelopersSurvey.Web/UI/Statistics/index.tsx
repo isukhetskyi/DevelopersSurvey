@@ -1,11 +1,11 @@
 ﻿import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { LanguagesChart } from "./Components/LanguagesChart";
+import { Charts } from "./Components/Charts";
 
 ReactDOM.render(
-    <LanguagesChart />,
-    document.getElementById('react-homepage-root'));
+    <Charts />,
+    document.getElementById('react-statistics-root'));
 
 declare var module: any;
 if (module.hot) {

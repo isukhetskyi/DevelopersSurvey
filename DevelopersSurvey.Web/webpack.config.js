@@ -15,7 +15,7 @@ const config = {
     entry: {
         homepage: './UI/Homepage/index.tsx',
         survey: './UI/Survey/index.tsx',
-        statistic: './UI/Statistic/index.tsx',
+        statistics: './UI/Statistics/index.tsx',
         libs: [
             'bootstrap',
             'bootstrap/dist/css/bootstrap.css',

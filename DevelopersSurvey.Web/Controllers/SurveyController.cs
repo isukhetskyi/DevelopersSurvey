@@ -19,7 +19,7 @@ namespace DevelopersSurvey.Web.Controllers
     /// <summary>
     /// The survey controller.
     /// </summary>
-    public class SurveyController : Controller
+    public class SurveyController : BaseController
     {
         /// <summary>
         /// The respondents service.

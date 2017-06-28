@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UI\Homepage\Components\" />
+    <Folder Include="Views\Statistics\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>

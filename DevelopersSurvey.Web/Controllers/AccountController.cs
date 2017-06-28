@@ -28,7 +28,7 @@ namespace DevelopersSurvey.Web.Controllers
     /// The account controller.
     /// </summary>
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         /// <summary>
         /// The _user manager.

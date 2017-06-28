@@ -1,29 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using DevelopersSurvey.Contracts.DataContracts;
-using DevelopersSurvey.Contracts.Services;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HomeController.cs" company="Peaceful Dev">
+//   Copyrights by Peaceful Dev
+// </copyright>
+// <summary>
+//   Defines the HomeController type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace DevelopersSurvey.Web.Controllers
 {
-    public class HomeController : Controller
+    using Microsoft.AspNetCore.Mvc;
+
+    /// <summary>
+    /// The home controller.
+    /// </summary>
+    public class HomeController : BaseController
     {
-        private IRespondentsService _respondentsService;
-
-        public HomeController(IRespondentsService respondentsService)
-        {
-            this._respondentsService = respondentsService;
-        }
-
+        /// <summary>
+        /// The index.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IActionResult"/>.
+        /// </returns>
         public IActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// The about.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IActionResult"/>.
+        /// </returns>
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -31,6 +40,12 @@ namespace DevelopersSurvey.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// The contact.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IActionResult"/>.
+        /// </returns>
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
@@ -38,11 +53,15 @@ namespace DevelopersSurvey.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// The error.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IActionResult"/>.
+        /// </returns>
         public IActionResult Error()
         {
             return View();
         }
-
-
     }
 }

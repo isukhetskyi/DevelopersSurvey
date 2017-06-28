@@ -9,7 +9,6 @@
 
 namespace DevelopersSurvey.DA.Repositories
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -78,7 +77,6 @@ namespace DevelopersSurvey.DA.Repositories
                     pls => pls,
                     (pl, pls) => new FrameworksDto { ExperianceId = pl.Id, RespondentId = newRepondent.Id })
                 .ToList();
-
 
             var databases = this.context.Experiances.Join(
                     newEntry.DatabasesString.Split(','),

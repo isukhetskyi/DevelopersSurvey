@@ -86,16 +86,32 @@ namespace DevelopersSurvey.Web
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-            // Add custom services
+            // Add repositories
             services.AddScoped<IRespondentsRepository, RespondentsRepository>();
+            services.AddScoped<IFrameworksRepository, FrameworksRepository>();
+            services.AddScoped<IDatabasesRepository, DatabasesRepository>();
+            services.AddScoped<IProgrammingLanguagesRepository, ProgrammingLanguagesRepository>();
+            services.AddScoped<IExperianceRepository, ExperianceRepository>();
+
+            // Add services
             services.AddScoped<IRespondentsService, RespondentsService>();
+            services.AddScoped<IFrameworksService, FrameworksService>();
+            services.AddScoped<IDatabasesService, DatabasesService>();
+            services.AddScoped<IProgrammingLanguagesService, ProgrammingLanguagesService>();
+            services.AddScoped<IExperianceService, ExperianceService>();
 
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<RespondentDto, Respondent>();
+                cfg.CreateMap<Respondent, RespondentDto>();
                 cfg.CreateMap<DatabasesDto, Databases>();
+                cfg.CreateMap<Databases, DatabasesDto>();
                 cfg.CreateMap<FrameworksDto, Frameworks>();
+                cfg.CreateMap<Frameworks, FrameworksDto>();
                 cfg.CreateMap<ProgrammingLanguagesDto, ProgrammingLanguages>();
+                cfg.CreateMap<ProgrammingLanguages, ProgrammingLanguagesDto>();
+                cfg.CreateMap<ExperianceDto, Experiance>();
+                cfg.CreateMap<Experiance, ExperianceDto>();
             });
 
             var mapper = config.CreateMapper();
