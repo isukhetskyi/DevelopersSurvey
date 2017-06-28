@@ -3,7 +3,6 @@ import * as ReactDOM from "react-dom";
 
 import { LanguagesChart } from "./Components/LanguagesChart";
 
-
 ReactDOM.render(
     <LanguagesChart />,
     document.getElementById('react-homepage-root'));

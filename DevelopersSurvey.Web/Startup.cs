@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Startup.cs" company="Peaceful Programmers">
-//   Copyrights by Peaceful Programmers 2017
+// <copyright file="Startup.cs" company="Peaceful Dev">
+//   Copyrights by Peaceful Dev 2017
 // </copyright>
 // <summary>
 //   Defines the Startup type.
@@ -93,6 +93,9 @@ namespace DevelopersSurvey.Web
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<RespondentDto, Respondent>();
+                cfg.CreateMap<DatabasesDto, Databases>();
+                cfg.CreateMap<FrameworksDto, Frameworks>();
+                cfg.CreateMap<ProgrammingLanguagesDto, ProgrammingLanguages>();
             });
 
             var mapper = config.CreateMapper();

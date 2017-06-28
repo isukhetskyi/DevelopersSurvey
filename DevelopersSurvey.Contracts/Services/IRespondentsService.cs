@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IRespondentsService.cs" company="Peaceful Programmers">
-//   Copyrights by Peaceful Programmers 2017
+// <copyright file="IRespondentsService.cs" company="Peaceful Dev">
+//   Copyrights by Peaceful Dev 2017
 // </copyright>
 // <summary>
 //   Defines the IRespondentsService type.

@@ -1,18 +1,18 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Experiance.cs" company="Peaceful Dev">
+// <copyright file="FrameworksDto.cs" company="Peaceful Dev">
 //   Copyrights by Peaceful Dev 2017
 // </copyright>
 // <summary>
-//   Defines the Experiance type.
+//   Defines the FrameworksDto type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DevelopersSurvey.DA.Models
+namespace DevelopersSurvey.Contracts.DataContracts
 {
     /// <summary>
-    /// The experiance type.
+    /// The frameworks dto.
     /// </summary>
-    public class Experiance
+    public class FrameworksDto
     {
         /// <summary>
         /// Gets or sets the id.
@@ -20,8 +20,13 @@ namespace DevelopersSurvey.DA.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of experiance record.
+        /// Gets or sets the respondent id.
         /// </summary>
-        public string Name { get; set; }
+        public int RespondentId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the experiance id.
+        /// </summary>
+        public int ExperianceId { get; set; }
     }
 }

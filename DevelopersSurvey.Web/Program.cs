@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Program.cs" company="Peaceful Programmers">
-//   Copyrights by Peaceful Programmers 
+// <copyright file="Program.cs" company="Peaceful Dev">
+//   Copyrights by Peaceful Dev 
 // </copyright>
 // <summary>
 //   The program.

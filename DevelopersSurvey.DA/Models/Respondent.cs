@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Respondent.cs" company="Peaceful Programmers">
-//   Copyright by Peaceful Programmers 2017
+// <copyright file="Respondent.cs" company="Peaceful Dev">
+//   Copyright by Peaceful Dev 2017
 // </copyright>
 // <summary>
 //   Defines the Respondent type.
@@ -9,11 +9,23 @@
 
 namespace DevelopersSurvey.DA.Models
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// The respondent data model.
     /// </summary>
-    public class Respondent
+    public sealed class Respondent
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Respondent"/> class.
+        /// </summary>
+        public Respondent()
+        {
+            this.ProgrammingLanguages = new HashSet<ProgrammingLanguages>();
+            this.Databases = new HashSet<Databases>();
+            this.Frameworks = new HashSet<Frameworks>();
+        }
+
         #region Personal info
 
         /// <summary>
@@ -87,17 +99,17 @@ namespace DevelopersSurvey.DA.Models
         /// <summary>
         /// Gets or sets the programming languages.
         /// </summary>
-        public string ProgrammingLanguages { get; set; }
+        public ICollection<ProgrammingLanguages> ProgrammingLanguages { get; set; }
 
         /// <summary>
         /// Gets or sets the databases.
         /// </summary>
-        public string Databases { get; set; }
+        public ICollection<Databases> Databases { get; set; }
 
         /// <summary>
         /// Gets or sets the frameworks.
         /// </summary>
-        public string Frameworks { get; set; }
+        public ICollection<Frameworks> Frameworks { get; set; }
 
         #endregion
 

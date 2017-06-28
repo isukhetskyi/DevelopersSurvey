@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RespondentDto.cs" company="Peaceful Programmers">
-//   Copyrights by Peaceful Programmers 2017
+// <copyright file="RespondentDto.cs" company="Peaceful Dev">
+//   Copyrights by Peaceful Dev 2017
 // </copyright>
 // <summary>
 //   The respondent dto.
@@ -9,6 +9,9 @@
 
 namespace DevelopersSurvey.Contracts.DataContracts
 {
+    using System.Collections;
+    using System.Collections.Generic;
+
     /// <summary>
     /// The respondent dto.
     /// </summary>
@@ -85,19 +88,34 @@ namespace DevelopersSurvey.Contracts.DataContracts
         #region WorkExperiance 
 
         /// <summary>
+        /// Gets or sets the programming languages separeted by comas
+        /// </summary>
+        public string ProgrammingLanguagesString { get; set; }
+
+        /// <summary>
         /// Gets or sets the programming languages.
         /// </summary>
-        public string ProgrammingLanguages { get; set; }
+        public ICollection<ProgrammingLanguagesDto> ProgrammingLanguages { get; set; }
+
+        /// <summary>
+        /// Gets or sets the databases separated by comas 
+        /// </summary>
+        public string DatabasesString { get; set; }
 
         /// <summary>
         /// Gets or sets the databases.
         /// </summary>
-        public string Databases { get; set; }
+        public ICollection<DatabasesDto> Databases { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the frameworks string separated by comas
+        /// </summary>
+        public string FrameworksString { get; set; }
 
         /// <summary>
         /// Gets or sets the frameworks.
         /// </summary>
-        public string Frameworks { get; set; }
+        public ICollection<FrameworksDto> Frameworks { get; set; }
 
         #endregion
 

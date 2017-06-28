@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IRespondentsRepository.cs" company="Peaceful Programmers">
-//   Copyrights by Peaceful Programmers 2017
+// <copyright file="IRespondentsRepository.cs" company="Peaceful Dev">
+//   Copyrights by Peaceful Dev 2017
 // </copyright>
 // <summary>
 //   The ResopondentsRepository interface.

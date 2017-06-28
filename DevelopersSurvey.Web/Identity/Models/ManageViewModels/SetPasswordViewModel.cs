@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SetPasswordViewModel.cs" company="Peaceful Programmers">
-//   Copyrights by Peaceful Programmers 2017
+// <copyright file="SetPasswordViewModel.cs" company="Peaceful Dev">
+//   Copyrights by Peaceful Dev 2017
 // </copyright>
 // <summary>
 //   Defines the SetPasswordViewModel type.

@@ -24,9 +24,9 @@ class Respondent {
     SpecialCources?: string;
 
     // work experiance
-    ProgrammingLanguages?: string;
-    Databases?: string;
-    Frameworks?: string;
+    ProgrammingLanguagesString?: string;
+    DatabasesString?: string;
+    FrameworksString?: string;
 
     // other info 
     OtherInfo?: string;
@@ -191,16 +191,16 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
         newRespondent.Skype = this.state.skype;
         newRespondent.PlaceOfStudying = this.state.placeOfStudying;
         newRespondent.SpecialCources = this.state.specialty;
-        newRespondent.ProgrammingLanguages = this.state.programmingLangages.join(",");
-        newRespondent.Frameworks = this.state.frameworks.join(",");
-        newRespondent.Databases = this.state.databases.join(",");
+        newRespondent.ProgrammingLanguagesString = this.state.programmingLangages.join(",");
+        newRespondent.FrameworksString = this.state.frameworks.join(",");
+        newRespondent.DatabasesString = this.state.databases.join(",");
         newRespondent.OtherInfo = this.state.otherInfo;
         let jsonRespondent = JSON.stringify(newRespondent);
     
         let data = new FormData();
         data.append("respondent", jsonRespondent);
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "home/SubmitSurvey", true);
+        xhr.open("POST", "Survey/SubmitSurvey", true);
         xhr.onload = function() {
             debugger;
         };
@@ -429,18 +429,6 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
                     {' '}
                     <Checkbox value="Redis" inline onChange={this.handleDatabasesChange.bind(this)}>
                         Redis
-                    </Checkbox>
-                    {' '}
-                    <Checkbox value="Xamarin" inline onChange={this.handleDatabasesChange.bind(this)}>
-                        Xamarin
-                    </Checkbox>
-                    {' '}
-                    <Checkbox value="Xamarin.Forms" inline onChange={this.handleDatabasesChange.bind(this)}>
-                        Xamarin.Forms
-                    </Checkbox>
-                    {' '}
-                    <Checkbox value="React" inline onChange={this.handleDatabasesChange.bind(this)}>
-                        React
                     </Checkbox>
                 </Col>
             </FormGroup>

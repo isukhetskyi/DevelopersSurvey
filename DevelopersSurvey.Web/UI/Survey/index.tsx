@@ -5,7 +5,7 @@ import { SurveyForm } from "./Components/SurveyForm";
 
 ReactDOM.render(
     <SurveyForm />,
-    document.getElementById('react-homepage-root'));
+    document.getElementById('react-survey-root'));
 
 declare var module: any;
 if (module.hot) {

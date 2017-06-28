@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExternalLoginConfirmationViewModel.cs" company="Peaceful Programmers">
-//   Copyright by Peaceful Programmers 2017
+// <copyright file="ExternalLoginConfirmationViewModel.cs" company="Peaceful Dev">
+//   Copyright by Peaceful Dev 2017
 // </copyright>
 // <summary>
 //   Defines the ExternalLoginConfirmationViewModel type.

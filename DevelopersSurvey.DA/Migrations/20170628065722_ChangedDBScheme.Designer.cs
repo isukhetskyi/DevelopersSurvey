@@ -8,9 +8,10 @@ using DevelopersSurvey.DA;
 namespace DevelopersSurvey.DA.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170628065722_ChangedDBScheme")]
+    partial class ChangedDBScheme
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -71,29 +72,15 @@ namespace DevelopersSurvey.DA.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ExperianceId");
+                    b.Property<string>("Name");
 
                     b.Property<int>("RespondentId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExperianceId");
-
                     b.HasIndex("RespondentId");
 
                     b.ToTable("Databases");
-                });
-
-            modelBuilder.Entity("DevelopersSurvey.DA.Models.Experiance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Experiances");
                 });
 
             modelBuilder.Entity("DevelopersSurvey.DA.Models.Frameworks", b =>
@@ -101,13 +88,11 @@ namespace DevelopersSurvey.DA.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ExperianceId");
+                    b.Property<string>("Name");
 
                     b.Property<int>("RespondentId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ExperianceId");
 
                     b.HasIndex("RespondentId");
 
@@ -119,13 +104,11 @@ namespace DevelopersSurvey.DA.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ExperianceId");
+                    b.Property<string>("Name");
 
                     b.Property<int>("RespondentId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ExperianceId");
 
                     b.HasIndex("RespondentId");
 
@@ -275,11 +258,6 @@ namespace DevelopersSurvey.DA.Migrations
 
             modelBuilder.Entity("DevelopersSurvey.DA.Models.Databases", b =>
                 {
-                    b.HasOne("DevelopersSurvey.DA.Models.Experiance", "Experiance")
-                        .WithMany()
-                        .HasForeignKey("ExperianceId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DevelopersSurvey.DA.Models.Respondent", "Respondent")
                         .WithMany("Databases")
                         .HasForeignKey("RespondentId")
@@ -288,11 +266,6 @@ namespace DevelopersSurvey.DA.Migrations
 
             modelBuilder.Entity("DevelopersSurvey.DA.Models.Frameworks", b =>
                 {
-                    b.HasOne("DevelopersSurvey.DA.Models.Experiance", "Experiance")
-                        .WithMany()
-                        .HasForeignKey("ExperianceId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DevelopersSurvey.DA.Models.Respondent", "Respondent")
                         .WithMany("Frameworks")
                         .HasForeignKey("RespondentId")
@@ -301,11 +274,6 @@ namespace DevelopersSurvey.DA.Migrations
 
             modelBuilder.Entity("DevelopersSurvey.DA.Models.ProgrammingLanguages", b =>
                 {
-                    b.HasOne("DevelopersSurvey.DA.Models.Experiance", "Experiance")
-                        .WithMany()
-                        .HasForeignKey("ExperianceId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DevelopersSurvey.DA.Models.Respondent", "Respondent")
                         .WithMany("ProgrammingLanguages")
                         .HasForeignKey("RespondentId")

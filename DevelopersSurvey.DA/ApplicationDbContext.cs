@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ApplicationDbContext.cs" company="Peaceful Programmers">
-//   Copyrights by Peaceful Programmers 2017
+// <copyright file="ApplicationDbContext.cs" company="Peaceful Dev">
+//   Copyrights by Peaceful Dev 2017
 // </copyright>
 // <summary>
 //   Defines the ApplicationDbContext type.
@@ -9,7 +9,6 @@
 
 namespace DevelopersSurvey.DA
 {
-    using DevelopersSurvey.DA.Enums;
     using DevelopersSurvey.DA.Models;
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -39,6 +38,21 @@ namespace DevelopersSurvey.DA
         /// <summary>
         /// Gets or sets the experiances dbset.
         /// </summary>
+        public DbSet<ProgrammingLanguages> ProgrammingLanguages { get; set; }
+
+        /// <summary>
+        /// Gets or sets the frameworks.
+        /// </summary>
+        public DbSet<Frameworks> Frameworks { get; set; }
+
+        /// <summary>
+        /// Gets or sets the databases.
+        /// </summary>
+        public DbSet<Databases> Databases { get; set; }
+
+        /// <summary>
+        /// Gets or sets the experiances.
+        /// </summary>
         public DbSet<Experiance> Experiances { get; set; }
 
         /// <summary>
@@ -55,6 +69,9 @@ namespace DevelopersSurvey.DA
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
             builder.Entity<Respondent>().HasKey(m => m.Id);
+            builder.Entity<ProgrammingLanguages>().HasKey(m => m.Id);
+            builder.Entity<Frameworks>().HasKey(m => m.Id);
+            builder.Entity<Databases>().HasKey(m => m.Id);
             builder.Entity<Experiance>().HasKey(m => m.Id);
         }
     }

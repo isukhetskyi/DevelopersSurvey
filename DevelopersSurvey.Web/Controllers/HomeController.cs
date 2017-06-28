@@ -43,12 +43,6 @@ namespace DevelopersSurvey.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult SubmitSurvey(string respondent)
-        {
-            var newRespondent = JsonConvert.DeserializeObject<RespondentDto>(respondent);
-            this._respondentsService.Add(newRespondent);
-            return View();
-        }
+
     }
 }

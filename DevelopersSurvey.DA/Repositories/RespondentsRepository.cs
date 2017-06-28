@@ -1,19 +1,19 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RespondentsRepository.cs" company="Peaceful Programmers">
-//   Copyrights by Peaceful Programmers 2017
+// <copyright file="RespondentsRepository.cs" company="Peaceful Dev">
+//   Copyrights by Peaceful Dev 2017
 // </copyright>
 // <summary>
 //   Defines the RespondentsRepository type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using AutoMapper;
-
 namespace DevelopersSurvey.DA.Repositories
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using AutoMapper;
 
     using DevelopersSurvey.Contracts.DataContracts;
     using DevelopersSurvey.Contracts.Repositories;
@@ -27,23 +27,26 @@ namespace DevelopersSurvey.DA.Repositories
         /// <summary>
         /// The context.
         /// </summary>
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
 
-        private readonly IMapper _mapper;
+        /// <summary>
+        /// The mapper.
+        /// </summary>
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RespondentsRepository"/> class.
         /// </summary>
         /// <param name="context">
-        /// The application db context.
+        /// The application db context injection
         /// </param>
         /// <param name="mapper">
-        /// Automapper
+        /// Automapper injection
         /// </param>
         public RespondentsRepository(ApplicationDbContext context, IMapper mapper)
         {
-            this._context = context;
-            this._mapper = mapper;
+            this.context = context;
+            this.mapper = mapper;
         }
 
         /// <summary>
@@ -57,10 +60,40 @@ namespace DevelopersSurvey.DA.Repositories
         /// </returns>
         public RespondentDto Add(RespondentDto newEntry)
         {
-            var newRepondent = _mapper.Map<Respondent>(newEntry);
-            this._context.Respondents.Add(newRepondent);
-            this._context.SaveChanges();
+            var newRepondent = this.mapper.Map<Respondent>(newEntry);
+            this.context.Respondents.Add(newRepondent);
+            this.context.SaveChanges();
             newEntry.Id = newRepondent.Id;
+
+            var programmingLanguages = this.context.Experiances.Join(
+                newEntry.ProgrammingLanguagesString.Split(','),
+                pl => pl.Name,
+                pls => pls,
+                (pl, pls) => new ProgrammingLanguagesDto { ExperianceId = pl.Id, RespondentId = newRepondent.Id })
+                .ToList();
+
+            var framewors = this.context.Experiances.Join(
+                    newEntry.FrameworksString.Split(','),
+                    pl => pl.Name,
+                    pls => pls,
+                    (pl, pls) => new FrameworksDto { ExperianceId = pl.Id, RespondentId = newRepondent.Id })
+                .ToList();
+
+
+            var databases = this.context.Experiances.Join(
+                    newEntry.DatabasesString.Split(','),
+                    pl => pl.Name,
+                    pls => pls,
+                    (pl, pls) => new DatabasesDto { ExperianceId = pl.Id, RespondentId = newRepondent.Id })
+                .ToList();
+            this.context.ProgrammingLanguages.AddRange(
+                this.mapper.Map<List<ProgrammingLanguages>>(programmingLanguages));
+            this.context.Frameworks.AddRange(
+                this.mapper.Map<List<Frameworks>>(framewors));
+            this.context.Databases.AddRange(
+                this.mapper.Map<List<Databases>>(databases));
+
+            this.context.SaveChanges();
             return newEntry;
         }
 
@@ -75,8 +108,8 @@ namespace DevelopersSurvey.DA.Repositories
         /// </returns>
         public RespondentDto GetById(int id)
         {
-            return _mapper.Map<RespondentDto>(
-                this._context.Respondents.FirstOrDefault(r => r.Id == id));
+            return this.mapper.Map<RespondentDto>(
+                this.context.Respondents.FirstOrDefault(r => r.Id == id));
         }
 
         /// <summary>
@@ -87,8 +120,8 @@ namespace DevelopersSurvey.DA.Repositories
         /// </returns>
         public IEnumerable<RespondentDto> GetAll()
         {
-            return this._mapper.Map<List<RespondentDto>>(
-                this._context.Respondents.ToList());
+            return this.mapper.Map<List<RespondentDto>>(
+                this.context.Respondents.ToList());
         }
     }
 }

@@ -13,7 +13,7 @@ export class Header extends React.Component<IHeaderProps, IHeaderState> {
         return <nav className="navbar navbar-default navbar-fixed-top">
                    <div className="container">
                        <div className="navbar-header">
-                           <a className="navbar-brand" href="#">Find you peace wiht Peaceful Programmers</a>
+                           <a className="navbar-brand" href="#">Find you peace wiht Peaceful Dev</a>
                        </div>
                    </div>
                </nav>;
