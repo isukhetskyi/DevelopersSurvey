@@ -130,7 +130,7 @@ namespace DevelopersSurvey.Web.Controllers
                     (pl, e) => new { Id = e.Id, ProgrammingLanguage = e.Name, RespondentId = pl.RespondentId }).GroupBy(
                     f => f.ProgrammingLanguage,
                     f => f.RespondentId,
-                    (key, values) => new { Database = key, Number = values.Count() });
+                    (key, values) => new { ProgrammingLanguage = key, Number = values.Count() });
 
             var ageStatistics = respondents.GroupBy(
                 r => r.Id,
