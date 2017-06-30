@@ -180,21 +180,21 @@ export class SurveyForm extends React.Component<ISurveyFormProps, ISurveyFormSta
     handleSubmit(event: any): void {
 
         let newRespondent: Respondent = new Respondent();
-        newRespondent.FirstName = this.state.firstName;
-        newRespondent.LastName = this.state.lastName;
+        newRespondent.FirstName = this.state.firstName.trim();
+        newRespondent.LastName = this.state.lastName.trim();
         newRespondent.Age = this.state.age;
-        newRespondent.Address = this.state.address;
+        newRespondent.Address = this.state.address.trim();
         newRespondent.IsCurrentlyEmployed = this.state.isEmployed;
-        newRespondent.CurrentPosition = this.state.currentPosition;
-        newRespondent.PhoneNumber = this.state.phone;
-        newRespondent.Mail = this.state.emailAddress;
-        newRespondent.Skype = this.state.skype;
-        newRespondent.PlaceOfStudying = this.state.placeOfStudying;
-        newRespondent.SpecialCources = this.state.specialty;
+        newRespondent.CurrentPosition = this.state.currentPosition.trim();
+        newRespondent.PhoneNumber = this.state.phone.trim();
+        newRespondent.Mail = this.state.emailAddress.trim();
+        newRespondent.Skype = this.state.skype.trim();
+        newRespondent.PlaceOfStudying = this.state.placeOfStudying.trim();
+        newRespondent.SpecialCources = this.state.specialty.trim();
         newRespondent.ProgrammingLanguagesString = this.state.programmingLangages.join(",");
         newRespondent.FrameworksString = this.state.frameworks.join(",");
         newRespondent.DatabasesString = this.state.databases.join(",");
-        newRespondent.OtherInfo = this.state.otherInfo;
+        newRespondent.OtherInfo = this.state.otherInfo.trim();
         let jsonRespondent = JSON.stringify(newRespondent);
     
         let data = new FormData();

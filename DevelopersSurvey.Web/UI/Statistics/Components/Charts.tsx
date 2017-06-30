@@ -54,7 +54,6 @@ export class Charts extends React.Component<IChartsProps, IChartsState> {
             frameworsArray = new Array();
             programmingLanguagesArray = new Array();
             databasesArray = new Array();
-            agesArray = new Array();
             frameworsArray.push(["Framework", "Number of people"]);
             programmingLanguagesArray.push(["Language", "Number of people"]);
             databasesArray.push(["Database", "Number of people"]);
