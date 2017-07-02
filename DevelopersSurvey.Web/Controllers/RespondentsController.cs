@@ -55,5 +55,19 @@ namespace DevelopersSurvey.Web.Controllers
         {
             return Json(new { respondents = this.respondentsService.GetAll() });
         }
+
+        /// <summary>
+        /// Returns specific respondent by it's id
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="JsonResult"/>.
+        /// </returns>
+        public JsonResult GetById(int id)
+        {
+            return Json(new { respondent = this.respondentsService.GetById(id) });
+        }
     }
 }
