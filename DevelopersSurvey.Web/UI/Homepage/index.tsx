@@ -2,14 +2,18 @@
 import * as React from 'react';
 
 
-export class Home extends React.Component<any,any> {
+export class Home extends React.Component<any, any> {
     render() {
-        return <h1>Home, sweet home, motherfuckers</h1>;
+        return <div className="text-center">
+            <h1>Home, sweet home</h1>
+            <img src="http://i1.kym-cdn.com/entries/icons/original/000/006/725/desk_flip.jpg"/>
+        </div>;
+
     }
 }
 
 ReactDOM.render(
-    <Home/>,
+    <Home />,
     document.getElementById('react-homepage-root'));
 
 declare var module: any;
