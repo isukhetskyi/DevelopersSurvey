@@ -1,4 +1,4 @@
-version: '0.1.2-alpha-{build}'
+version: '0.2.1-alpha-{build}'
 
 install:
   # Get the latest stable version of Node.js

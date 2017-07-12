@@ -6,7 +6,7 @@ export class Home extends React.Component<any, any> {
     render() {
         return <div className="text-center">
             <h1>Home, sweet home</h1>
-            <img src="http://i1.kym-cdn.com/entries/icons/original/000/006/725/desk_flip.jpg"/>
+            <img  src="http://i1.kym-cdn.com/entries/icons/original/000/006/725/desk_flip.jpg"/>
         </div>;
 
     }

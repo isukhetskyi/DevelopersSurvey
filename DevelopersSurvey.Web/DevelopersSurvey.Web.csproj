@@ -41,6 +41,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\" />
     <Folder Include="UI\Homepage\Components\" />
     <Folder Include="Views\Statistics\" />
     <Folder Include="wwwroot\" />
